@@ -1,0 +1,15 @@
+version: '3'
+services:
+  comfy-channel:
+    build: .
+    restart: unless-stopped
+    environment:
+    - SERVER_IP=nginx-rtmp
+    depends_on:
+    - nginx-rtmp
+  nginx-rtmp:
+    image: mvarhola/nginx-rtmp
+    ports:
+      - "80:80"
+    logging:
+      driver: "none"
